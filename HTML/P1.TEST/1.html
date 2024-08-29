@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding-top: 30px;
+      min-height: 70px;
+      border-bottom: #0779e4 3px solid;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 16px;
+    }
+    .options {
+      background: #0779e4;
+      color: #fff;
+      padding: 10px;
+      cursor: pointer;
+      border: 1px solid #333;
+      margin-bottom: 10px;
+    }
+    .content {
+      display: none;
+      background: #f9f9f9;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+    }
+    .submit-btn {
+      background: #0779e4;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+    .display-section {
+      display: none;
+      background: #e0e0e0;
+      padding: 10px;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Hospital Management System</h1>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="options" onclick="toggleSection('patient-registration')">Patient Registration</div>
+    <div id="patient-registration" class="content">
+      <form id="patientForm">
+        <div class="form-group">
+          <label for="patientName">Name</label>
+          <input type="text" id="patientName" name="patientName" required>
+        </div>
+        <div class="form-group">
+          <label for="patientAge">Age</label>
+          <input type="number" id="patientAge" name="patientAge" required>
+        </div>
+        <div class="form-group">
+          <label for="patientEmail">Email</label>
+          <input type="email" id="patientEmail" name="patientEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="patientAddress">Address</label>
+          <textarea id="patientAddress" name="patientAddress" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+      <div id="patientDisplay" class="display-section">
+        <h3>Patient Information</h3>
+        <p><strong>Name:</strong> <span id="displayPatientName"></span></p>
+        <p><strong>Age:</strong> <span id="displayPatientAge"></span></p>
+        <p><strong>Email:</strong> <span id="displayPatientEmail"></span></p>
+        <p><strong>Address:</strong> <span id="displayPatientAddress"></span></p>
+      </div>
+    </div>
+
+    <div class="options" onclick="toggleSection('doctor-info')">Doctor Information</div>
+    <div id="doctor-info" class="content">
+      <form id="doctorForm">
+        <div class="form-group">
+          <label for="doctorName">Name</label>
+          <input type="text" id="doctorName" name="doctorName" required>
+        </div>
+        <div class="form-group">
+          <label for="doctorSpecialty">Specialty</label>
+          <input type="text" id="doctorSpecialty" name="doctorSpecialty" required>
+        </div>
+        <div class="form-group">
+          <label for="doctorContact">Contact Information</label>
+          <input type="text" id="doctorContact" name="doctorContact" required>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+      <div id="doctorDisplay" class="display-section">
+        <h3>Doctor Information</h3>
+        <p><strong>Name:</strong> <span id="displayDoctorName"></span></p>
+        <p><strong>Specialty:</strong> <span id="displayDoctorSpecialty"></span></p>
+        <p><strong>Contact:</strong> <span id="displayDoctorContact"></span></p>
+      </div>
+    </div>
+
+    <div class="options" onclick="toggleSection('contact-info')">Contact Information</div>
+    <div id="contact-info" class="content">
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="contactName">Name</label>
+          <input type="text" id="contactName" name="contactName" required>
+        </div>
+        <div class="form-group">
+          <label for="contactEmail">Email</label>
+          <input type="email" id="contactEmail" name="contactEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" name="contactMessage" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+      <div id="contactDisplay" class="display-section">
+        <h3>Contact Information</h3>
+        <p><strong>Name:</strong> <span id="displayContactName"></span></p>
+        <p><strong>Email:</strong> <span id="displayContactEmail"></span></p>
+        <p><strong>Message:</strong> <span id="displayContactMessage"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSection(sectionId) {
+      var section = document.getElementById(sectionId);
+      if (section.style.display === 'block') {
+        section.style.display = 'none';
+      } else {
+        section.style.display = 'block';
+      }
+    }
+
+    // Example of basic form validation and display for Patient Form
+    document.getElementById('patientForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      var name = document.getElementById('patientName').value;
+      var age = document.getElementById('patientAge').value;
+      var email = document.getElementById('patientEmail').value;
+      var address = document.getElementById('patientAddress').value;
+
+      document.getElementById('displayPatientName').innerText = name;
+      document.getElementById('displayPatientAge').innerText = age;
+      document.getElementById('displayPatientEmail').innerText = email;
+      document.getElementById('displayPatientAddress').innerText = address;
+
+      document.getElementById('patientDisplay').style.display = 'block';
+    });
+
+    // Example of basic form validation and display for Doctor Form
+    document.getElementById('doctorForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      var name = document.getElementById('doctorName').value;
+      var specialty = document.getElementById('doctorSpecialty').value;
+      var contact = document.getElementById('doctorContact').value;
+
+      document.getElementById('displayDoctorName').innerText = name;
+      document.getElementById('displayDoctorSpecialty').innerText = specialty;
+      document.getElementById('displayDoctorContact').innerText = contact;
+
+      document.getElementById('doctorDisplay').style.display = 'block';
+    });
+
+    // Example of basic form validation and display for Contact Form
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      var name = document.getElementById('contactName').value;
+      var email = document.getElementById('contactEmail').value;
+      var message = document.getElementById('contactMessage').value;
+
+      document.getElementById('displayContactName').innerText = name;
+      document.getElementById('displayContactEmail').innerText = email;
+      document.getElementById('displayContactMessage').innerText = message;
+
+      document.getElementById('contactDisplay').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Application Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 60%;
+            margin: 0 auto;
+        }
+        .form-group {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            width: 30%;
+            padding-right: 10px;
+            text-align: right;
+        }
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 70%;
+        }
+        #output {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>College Application Form</h1>
+        <form id="collegeForm" onsubmit="return handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">--Select Gender--</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Permanent Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="course">Course Applying For:</label>
+                <select id="course" name="course" required>
+                    <option value="">--Select Course--</option>
+                    <option value="computer_science">Computer Science</option>
+                    <option value="business_administration">Business Administration</option>
+                    <option value="mechanical_engineering">Mechanical Engineering</option>
+                    <option value="biology">Biology</option>
+                    <option value="english_literature">English Literature</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="previous_qualification">Previous Qualification:</label>
+                <select id="previous_qualification" name="previous_qualification" required>
+                    <option value="">--Select Qualification--</option>
+                    <option value="high_school">High School Diploma</option>
+                    <option value="associate_degree">Associate Degree</option>
+                    <option value="bachelor_degree">Bachelor's Degree</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for=

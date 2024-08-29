@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>City Hospital</h1>
+        <nav>
+            <a href="#departments">Departments</a>
+            <a href="#doctors">Doctors</a>
+            <a href="#register">Register</a>
+        </nav>
+    </header>
+    
+    <main>
+        <iframe src="departments.html" id="departmentsFrame" name="departmentsFrame" width="100%" height="300" title="Departments"></iframe>
+        <iframe src="doctors.html" id="doctorsFrame" name="doctorsFrame" width="100%" height="300" title="Doctors"></iframe>
+
+        <section id="register">
+            <h2>New Patient Registration</h2>
+            <form id="registrationForm" action="" method="post">
+                <label for="patientName">Name:</label>
+                <input type="text" id="patientName" name="patientName" required>
+                
+                <label for="patientEmail">Email:</label>
+                <input type="email" id="patientEmail" name="patientEmail" required>
+                
+                <label for="patientPhone">Phone Number:</label>
+                <input type="tel" id="patientPhone" name="patientPhone" required>
+                
+                <label for="patientAddress">Address:</label>
+                <textarea id="patientAddress" name="patientAddress" required></textarea>
+                
+                <label for="department">Select Department:</label>
+                <select id="department" name="department" required>
+                    <option value="">--Select--</option>
+                    <option value="cardiology">Cardiology</option>
+                    <option value="neurology">Neurology</option>
+                    <option value="orthopedics">Orthopedics</option>
+                </select>
+                
+                <button type="submit">Register</button>
+            </form>
+        </section>
+    </main>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>

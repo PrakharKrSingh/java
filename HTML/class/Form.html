@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .error {
+            color: red;
+            display: none;
+        }
+        .submitted-data {
+            margin-top: 20px;
+            border: 1px solid #e8e4e4;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Management Form</h2>
+    <form id="studentForm">
+        <label for="studentName">Student Name:</label><br>
+        <input type="text" id="studentName" name="studentName">
+        <span class="error" id="studentNameError">Please enter a valid name (letters and spaces only).</span><br><br>
+
+        <label for="studentEmail">Student Email:</label><br>
+        <input type="email" id="studentEmail" name="studentEmail">
+        <span class="error" id="studentEmailError">Please enter a valid email address.</span><br><br>
+
+        <label for="studentAge">Student Age:</label><br>
+        <input type="number" id="studentAge" name="studentAge" min="1">
+        <span class="error" id="studentAgeError">Please enter a valid age (positive number).</span><br><br>
+
+        <label for="dob">Date of Birth:</label><br>
+        <input type="date" id="dob" name="dob">
+        <span class="error" id="dobError">Please enter a valid date of birth.</span><br><br>
+
+        <label for="contactNumber">Contact Number:</label><br>
+        <input type="text" id="contactNumber" name="contactNumber">
+        <span class="error" id="contactNumberError">Please enter a valid contact number (10 digits).</span><br><br>
+
+        <label for="studentID">Student ID:</label><br>
+        <input type="text" id="studentID" name="studentID">
+        <span class="error" id="studentIDError">Please enter a valid Student ID (alphanumeric).</span><br><br>
+
+        <label for="course">Course:</label><br>
+        <input type="text" id="course" name="course">
+        <span class="error" id="courseError">Please enter a valid course name.</span><br><br>
+
+        <label for="yearOfStudy">Year of Study:</label><br>
+        <select id="yearOfStudy" name="yearOfStudy">
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+        </select><br><br>
+
+        <label for="agree">I agree to the terms and conditions:</label>
+        <input type="checkbox" id="agree" name="agree">
+        <span class="error" id="agreeError">You must agree to the terms and conditions.</span><br><br>
+
+        <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+
+    <div class="submitted-data" id="submittedData"></div>
+
+    <script>
+        function validateForm() {
+            var isValid = true;
+
+            // Student Name validation: letters and spaces only
+            var studentName = document.getElementById("studentName").value;
+            var nameRegex = /^[a-zA-Z]{1/10}$/;
+
+            if (!nameRegex.test(studentName)) {
+                document.getElementById("studentNameError").style.display = "inline";
+                isValid = false;
+            } else {
+                document.getElementById("studentNameError").style.display = "none";
+            }
+
+            // Email validation: basic email format
+            var studentEmail = document.getElementById("studentEmail").value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(studentEmail)) {
+                document.getElementById("studentEmailError").style.display = "inline";
+                isValid = false;
+            } else {
+                document.getElementById("studentEmailError").style.display = "none";
+            }
+
+            // Age validation: positive number
+            var studentAge = document.getElementById("studentAge").value;
+            if (studentAge <= 0 || isNaN(studentAge)) {
+                document.getElementById("studentAgeError").style.display = "inline";
+                isValid = false;
+            } else {
+                document.getElementById("studentAgeError").style.display = "none";
+            }
+
+            // Date of Birth validation: must be filled
+            var dob = document.getElementById("dob").value;
+            if (!dob) {
+                document.getElementById("dobError").style.display = "inline";
+                isValid = false;
+            } else {
+                document.getElementById("dobError").style.display = "none";
+            }
+
+            // Contact Number validation: 10 digits
+            var contactNumber = document.getElementById("contactNumber").value;
+            var contactNumberRegex = /^\d{10}$/;
+            if (!contactNumberRegex.test(contactNumber)) {
+                document.getElementById("contactNumberError").style.display = "inline";
+                isValid = false;
+            } else {
+                document.getElementById("contactNumberError").style.display = "none";
+            }
+
+            // Student ID validation: alphanumeric
+            var studentID = document.getElementById("studentID").value;
+            var studentIDRegex = /^[a-zA-Z0-9]+$/;
+            if (!studentIDRegex.test(studentID)) {
+                document.getElementById("studentIDError").style.display = "inline";
+                isValid = false;
+            } else {
+                document.getElementById("studentIDError").style.display = "none";
+            }
+
+            // Course validation: must be filled
+            var course = document.getElementById("course").value;
+            if (!course) {
+                document.getElementById("courseError").style.display = "inline";
+                isValid = false;
+            } else {
+                document.getElementById("courseError").style.display = "none";
+            }
+
+            // Agreement validation: checkbox must be checked
+            var agree = document.getElementById("agree").checked;
+            if (!agree) {
+                document.getElementById("agreeError").style.display = "inline";
+                isValid = false;
+            } else {
+                document.getElementById("agreeError").style.display = "none";
+            }
+
+            // If all validations pass
+            if (isValid) {
+                var submittedData = `
+                    <h3>Submitted Data</h3>
+                    <p><strong>Student Name:</strong> ${studentName}</p>
+                    <p><strong>Email:</strong> ${studentEmail}</p>
+                    <p><strong>Age:</strong> ${studentAge}</p>
+                    <p><strong>Date of Birth:</strong> ${dob}</p>
+                    <p><strong>Contact Number:</strong> ${contactNumber}</p>
+                    <p><strong>Student ID:</strong> ${studentID}</p>
+                    <p><strong>Course:</strong> ${course}</p>
+                    <p><strong>Year of Study:</strong> ${document.getElementById("yearOfStudy").value}</p>
+                    <p><strong>Agreed to Terms:</strong> ${agree ? 'Yes' : 'No'}</p>
+                `;
+                document.getElementById("submittedData").innerHTML = submittedData;
+            } else {
+                alert("Please correct the errors in the form before submitting.");
+            }
+        }
+    </script>
+
+</body>
+</html>
